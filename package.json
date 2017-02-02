@@ -79,18 +79,22 @@
     "react-addons-css-transition-group": "^15.1.0"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=development UV_THREADPOOL_SIZE=100 node ./server",
-    "lint": "eslint ./ --ext .js,.jsx",
     "babel": "babel ./components --out-dir ./lib",
-    "sass": "cpx './components/**/*.scss' ./lib",
-    "build": "cross-env NODE_ENV=production npm run babel && npm run sass",
+    "build": "cross-env NODE_ENV=production gulp && npm run tsd",
     "clean": "rimraf ./lib",
+    "css": "cpx \"./components/**/*.css\" ./lib",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:css": "stylelint ./components/**/*.css",
+    "lint:js": "eslint ./ --ext .js",
+    "lint:staged": "lint-staged",
+    "patch": "bumped release patch",
     "prebuild": "npm run clean",
     "prepublish": "npm run build",
+    "release": "npm run prebuild && npm run build && npm version patch && npm publish",
+    "start": "cross-env NODE_ENV=development UV_THREADPOOL_SIZE=100 node ./server",
     "test": "cross-env NODE_ENV=test karma start",
     "test:watch": "cross-env NODE_ENV=test karma start --no-single-run",
-    "release": "npm run prebuild && npm run build && npm version patch && npm publish",
-    "patch": "bumped release patch"
+    "tsd": "cpx \"./components/**/*.d.ts\" ./lib"
   },
   "repository": {
     "type": "git",

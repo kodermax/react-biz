@@ -7,7 +7,6 @@ import AppBar from '../components/app_bar';
 import ButtonToolbox from '../components/button';
 
 import Autocomplete from './components/autocomplete';
-import Autosuggest from './components/autosuggest';
 import AppBarTest from './components/app_bar';
 import Avatar from './components/avatar';
 import FontIcon from './components/font_icon';
@@ -74,7 +73,6 @@ class Root extends Component {
 
         <Panel className={style.app}>
           <Autocomplete />
-          <Autosuggest />
           <AppBarTest />
           <Avatar />
           <FontIcon />
